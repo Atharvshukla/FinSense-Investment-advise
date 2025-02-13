@@ -10,8 +10,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { TaxBreakdown } from '@/components/tax-breakdown';
 import { RegimeComparison } from '@/components/regime-comparison';
 import { TaxSavingSuggestions } from '@/components/tax-saving-suggestions';
-import { Calculator, ArrowRight, Coins,PiggyBank } from 'lucide-react';
-// import { PiggyBank } from "@/components/icons";
+import { Calculator, ArrowRight, Coins, Wallet } from 'lucide-react';
 
 interface TaxDetails {
   basicSalary: number;
@@ -321,7 +320,7 @@ export default function TaxationPage() {
               
               <Card className="p-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <PiggyBank className="w-4 h-4 text-primary" />
+                  <Wallet className="w-4 h-4 text-primary" />
                   <h4 className="font-semibold">Tax Saved</h4>
                 </div>
                 <p className="text-2xl font-bold">

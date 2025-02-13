@@ -26,6 +26,25 @@ const nextConfig = {
       };
     }
     config.externals = [...(config.externals || []), 'canvas', 'jsdom'];
+    
+    // Add module rules for handling specific cases
+    config.module = {
+      ...config.module,
+      rules: [
+        ...(config.module?.rules || []),
+        {
+          test: /\.(js|jsx|ts|tsx)$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['next/babel'],
+            },
+          },
+        },
+      ],
+    };
+
     return config;
   },
 };
