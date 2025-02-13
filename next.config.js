@@ -18,10 +18,6 @@ const nextConfig = {
     }
     return config;
   },
-  // Add this to handle potential API routes in static export
-  rewrites: async () => {
-    return [];
-  },
 };
 
 module.exports = nextConfig;
