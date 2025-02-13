@@ -6,7 +6,12 @@ const nextConfig = {
   },
   images: { 
     unoptimized: true,
-    domains: ['localhost'], // Add any other domains you're loading images from
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
   webpack: (config, { isServer }) => {
     if (!isServer) {
