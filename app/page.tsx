@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { BarChart, FileText, TrendingUp, PieChart } from 'lucide-react';
+import { BarChart, Calculator, TrendingUp, PieChart } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold mb-6">FinSense AI</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Your intelligent financial advisor powered by AI. Get personalized investment strategies, analyze documents, and track expenses in real-time.
+            Your intelligent financial advisor powered by AI. Get personalized investment strategies, calculate taxes, and track expenses in real-time.
           </p>
         </div>
 
@@ -33,15 +33,15 @@ export default function Home() {
           <Card className="p-6 hover:shadow-lg transition-shadow">
             <div className="flex items-center gap-4 mb-4">
               <div className="p-3 bg-primary/10 rounded-lg">
-                <FileText className="w-6 h-6 text-primary" />
+                <Calculator className="w-6 h-6 text-primary" />
               </div>
-              <h2 className="text-2xl font-semibold">Document Analysis</h2>
+              <h2 className="text-2xl font-semibold">Tax Calculator</h2>
             </div>
             <p className="text-muted-foreground mb-6">
-              Upload and analyze financial documents with our advanced AI system.
+              Calculate your taxes under both regimes with AI-powered optimization suggestions.
             </p>
-            <Link href="/documents">
-              <Button className="w-full">Upload Documents</Button>
+            <Link href="/taxation">
+              <Button className="w-full">Calculate Taxes</Button>
             </Link>
           </Card>
 
@@ -79,10 +79,10 @@ export default function Home() {
               </p>
             </div>
             <div>
-              <FileText className="w-12 h-12 mx-auto mb-4 text-primary" />
-              <h3 className="text-xl font-semibold mb-2">Document Intelligence</h3>
+              <Calculator className="w-12 h-12 mx-auto mb-4 text-primary" />
+              <h3 className="text-xl font-semibold mb-2">Tax Optimization</h3>
               <p className="text-muted-foreground">
-                Extract valuable insights from your financial documents automatically.
+                Get personalized tax saving recommendations and regime comparison.
               </p>
             </div>
           </div>
