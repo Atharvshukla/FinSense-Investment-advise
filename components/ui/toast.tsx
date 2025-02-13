@@ -115,9 +115,9 @@ ToastDescription.displayName = ToastPrimitives.Description.displayName;
 type ToastProps = React.ComponentPropsWithoutRef<typeof ToastRoot>;
 type ToastActionElement = React.ReactElement<typeof ToastAction>;
 
+export type { ToastProps, ToastActionElement };
+
 export {
-  type ToastProps,
-  type ToastActionElement,
   ToastProvider,
   ToastViewport,
   ToastRoot as Toast,
@@ -126,6 +126,3 @@ export {
   ToastClose,
   ToastAction,
 };
-
-// Remove this duplicate export
-// export { ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport }

@@ -3,6 +3,7 @@
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { AlertTriangle, CheckCircle, TrendingUp } from 'lucide-react';
+import { PiggyBank } from "@/components/icons";
 
 interface TaxSavingSuggestionsProps {
   data: {

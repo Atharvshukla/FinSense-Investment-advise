@@ -1,10 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  output: 'standalone', // Changed from 'export' to 'standalone'
   eslint: {
     ignoreDuringBuilds: true,
   },
-  images: { unoptimized: true },
+  images: { 
+    unoptimized: true,
+    domains: ['localhost'], // Add any other domains you're loading images from
+  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
@@ -14,6 +17,10 @@ const nextConfig = {
       };
     }
     return config;
+  },
+  // Add this to handle potential API routes in static export
+  rewrites: async () => {
+    return [];
   },
 };
 

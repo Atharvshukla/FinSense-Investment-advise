@@ -1,7 +1,7 @@
 "use client";
 
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
-
+import { PiggyBank } from "@/components/icons";
 interface ExpenseChartProps {
   data: Record<string, number>;
 }

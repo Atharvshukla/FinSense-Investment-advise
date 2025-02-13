@@ -1,7 +1,7 @@
 "use client";
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-
+import { PiggyBank } from "@/components/icons";
 interface MonthlyTrendProps {
   data: Array<{
     month: string;
