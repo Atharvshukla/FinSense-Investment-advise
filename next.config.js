@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone', // Changed from 'export' to 'standalone'
+  output: 'standalone',
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -19,8 +19,13 @@ const nextConfig = {
         ...config.resolve.fallback,
         bufferutil: false,
         'utf-8-validate': false,
+        fs: false,
+        net: false,
+        tls: false,
+        child_process: false,
       };
     }
+    config.externals = [...(config.externals || []), 'canvas', 'jsdom'];
     return config;
   },
 };

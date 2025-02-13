@@ -1,7 +1,7 @@
 "use client";
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { PiggyBank } from "@/components/icons";
+
 interface CategoryDistributionProps {
   data: Record<string, number>;
 }

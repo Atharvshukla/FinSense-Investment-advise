@@ -10,8 +10,8 @@ import { useToast } from '@/components/ui/use-toast';
 import { TaxBreakdown } from '@/components/tax-breakdown';
 import { RegimeComparison } from '@/components/regime-comparison';
 import { TaxSavingSuggestions } from '@/components/tax-saving-suggestions';
-import { Calculator, ArrowRight, Coins } from 'lucide-react';
-import { PiggyBank } from "@/components/icons";
+import { Calculator, ArrowRight, Coins,PiggyBank } from 'lucide-react';
+// import { PiggyBank } from "@/components/icons";
 
 interface TaxDetails {
   basicSalary: number;
