@@ -2,7 +2,6 @@
 
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 import { Card } from '@/components/ui/card';
-import { PiggyBank } from "@/components/icons";
 
 interface RegimeComparisonProps {
   data: {

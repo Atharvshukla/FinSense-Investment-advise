@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Select } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { LineChart, TrendingUp, PieChart } from 'lucide-react';
+import { UserNav } from '@/components/user-nav';
 
 export default function InvestmentPage() {
   const [userProfile, setUserProfile] = useState({
@@ -39,10 +40,12 @@ export default function InvestmentPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="mb-8 text-center">
-        <h1 className="text-4xl font-bold mb-4">FinSense AI Investment Advisor</h1>
-        <p className="text-muted-foreground">Get personalized investment strategies powered by AI</p>
-      </div>
+      <header className="flex justify-between items-center mb-8">
+        <h1 className="text-4xl font-bold">FinSense AI Investment Advisor</h1>
+        <UserNav />
+      </header>
+
+      <p className="text-muted-foreground mb-8">Get personalized investment strategies powered by AI</p>
 
       <div className="grid md:grid-cols-2 gap-8">
         <Card className="p-6">

@@ -1,20 +1,28 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { BarChart, Calculator, TrendingUp, PieChart } from 'lucide-react';
+import { BarChart, Calculator, TrendingUp, PieChart, Wallet } from 'lucide-react';
+import { UserNav } from '@/components/user-nav';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-secondary">
+      <header className="container mx-auto px-4 py-4">
+        <div className="flex justify-between items-center">
+          <h1 className="text-2xl font-bold">FinSense AI</h1>
+          <UserNav />
+        </div>
+      </header>
+
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold mb-6">FinSense AI</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Your intelligent financial advisor powered by AI. Get personalized investment strategies, calculate taxes, and track expenses in real-time.
+            Your intelligent financial advisor powered by AI. Get personalized investment strategies, calculate taxes, track expenses, and access powerful financial tools.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           <Card className="p-6 hover:shadow-lg transition-shadow">
             <div className="flex items-center gap-4 mb-4">
               <div className="p-3 bg-primary/10 rounded-lg">
@@ -59,6 +67,21 @@ export default function Home() {
               <Button className="w-full">Track Expenses</Button>
             </Link>
           </Card>
+
+          <Card className="p-6 hover:shadow-lg transition-shadow">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 bg-primary/10 rounded-lg">
+                <Wallet className="w-6 h-6 text-primary" />
+              </div>
+              <h2 className="text-2xl font-semibold">Financial Tools</h2>
+            </div>
+            <p className="text-muted-foreground mb-6">
+              Access a comprehensive suite of calculators and tools for smarter financial planning.
+            </p>
+            <Link href="/tools">
+              <Button className="w-full">Explore Tools</Button>
+            </Link>
+          </Card>
         </div>
 
         <div className="mt-16 text-center">
@@ -80,9 +103,9 @@ export default function Home() {
             </div>
             <div>
               <Calculator className="w-12 h-12 mx-auto mb-4 text-primary" />
-              <h3 className="text-xl font-semibold mb-2">Tax Optimization</h3>
+              <h3 className="text-xl font-semibold mb-2">Comprehensive Tools</h3>
               <p className="text-muted-foreground">
-                Get personalized tax saving recommendations and regime comparison.
+                Access a wide range of financial calculators and planning tools.
               </p>
             </div>
           </div>

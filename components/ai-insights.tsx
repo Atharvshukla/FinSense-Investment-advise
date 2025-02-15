@@ -1,7 +1,7 @@
 "use client";
 
 import { AlertTriangle, TrendingUp, CheckCircle, Info } from 'lucide-react';
-import { PiggyBank } from "@/components/icons";
+
 interface Insight {
   type: 'warning' | 'success' | 'info';
   message: string;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -11,10 +11,14 @@ import { CategoryDistribution } from '@/components/category-distribution';
 import { MonthlyTrend } from '@/components/monthly-trend';
 import { AIInsights } from '@/components/ai-insights';
 import { useToast } from '@/components/ui/use-toast';
+import { UserNav } from '@/components/user-nav';
 
 export default function ExpensesPage() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [expenseData, setExpenseData] = useState<any>(null);
+  const [expenseData, setExpenseData] = useState<any>(() => {
+    const savedData = localStorage.getItem('expenseData');
+    return savedData ? JSON.parse(savedData) : null;
+  });
   const { toast } = useToast();
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
@@ -62,6 +66,7 @@ export default function ExpensesPage() {
       };
 
       setExpenseData(mockData);
+      localStorage.setItem('expenseData', JSON.stringify(mockData)); // Save data to localStorage
       toast({
         title: "Document Analysis Complete",
         description: "Your financial document has been successfully analyzed.",
@@ -88,14 +93,24 @@ export default function ExpensesPage() {
     maxFiles: 1,
   });
 
+  const handleSignOut = () => {
+    // Clear localStorage on sign out
+    localStorage.removeItem('expenseData');
+    setExpenseData(null);
+    // Add your sign-out logic here
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">Expense Analytics Dashboard</h1>
-        <p className="text-muted-foreground">
-          Upload your financial documents to get AI-powered insights and visualizations
-        </p>
-      </div>
+      <header className="flex justify-between items-center mb-8">
+        <div>
+          <h1 className="text-4xl font-bold mb-4">Expense Analytics Dashboard</h1>
+          <p className="text-muted-foreground">
+            Upload your financial documents to get AI-powered insights and visualizations
+          </p>
+        </div>
+        <UserNav /> {/* Removed onSignOut prop */}
+      </header>
 
       {!expenseData ? (
         <Card className="p-8">
@@ -215,6 +230,7 @@ export default function ExpensesPage() {
               variant="outline"
               onClick={() => {
                 setExpenseData(null);
+                localStorage.removeItem('expenseData'); // Clear data from localStorage
                 toast({
                   title: "Reset Complete",
                   description: "You can now upload a new document for analysis.",

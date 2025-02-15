@@ -2,7 +2,6 @@
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Card } from '@/components/ui/card';
-import { PiggyBank } from "@/components/icons";
 
 interface TaxBreakdownProps {
   data: {
