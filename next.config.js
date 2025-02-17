@@ -1,11 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
+
+  experimental: {
+    appDir: true, // Ensures App Router works
+  },
+
   eslint: {
     ignoreDuringBuilds: true,
   },
+
   images: { 
-    unoptimized: true,
+    unoptimized: false, 
     remotePatterns: [
       {
         protocol: 'https',
@@ -13,6 +19,10 @@ const nextConfig = {
       },
     ],
   },
+
+  // ✅ Force Next.js to use Node.js runtime (NOT Edge)
+  runtime: 'nodejs', 
+
   // webpack: (config, { isServer }) => {
   //   if (!isServer) {
   //     config.resolve.fallback = {
@@ -25,25 +35,19 @@ const nextConfig = {
   //       child_process: false,
   //     };
   //   }
+
   //   config.externals = [...(config.externals || []), 'canvas', 'jsdom'];
-    
-  //   // Add module rules for handling specific cases
-  //   config.module = {
-  //     ...config.module,
-  //     rules: [
-  //       ...(config.module?.rules || []),
-  //       {
-  //         test: /\.(js|jsx|ts|tsx)$/,
-  //         exclude: /node_modules/,
-  //         use: {
-  //           loader: 'babel-loader',
-  //           options: {
-  //             presets: ['next/babel'],
-  //           },
-  //         },
+
+  //   config.module.rules.push({
+  //     test: /\.(js|jsx|ts|tsx)$/,
+  //     exclude: /node_modules/,
+  //     use: {
+  //       loader: 'babel-loader',
+  //       options: {
+  //         presets: ['next/babel'],
   //       },
-  //     ],
-  //   };
+  //     },
+  //   });
 
   //   return config;
   // },
