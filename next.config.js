@@ -13,14 +13,15 @@ const nextConfig = {
       },
     ],
   },
-  runtime: 'nodejs', // Use Node.js runtime instead of Edge
   webpack: (config, { isServer, isEdgeRuntime }) => {
+    // Exclude problematic modules from Edge Runtime
     if (isEdgeRuntime) {
       config.resolve.alias = {
         ...config.resolve.alias,
         'regenerator-runtime': false,
-        'utf-8-validate': false,
-        'bufferutil': false,
+        '@babel/runtime': false, // Exclude regenerator-runtime
+        'utf-8-validate': false,      // Exclude utf-8-validate
+        'bufferutil': false,          // Exclude bufferutil
       };
     }
 
@@ -31,17 +32,8 @@ const nextConfig = {
       'jsdom',  // Disable jsdom for Edge Runtime
     ];
 
-    // Ensure Babel is correctly applied to all JS/TS files
-    config.module.rules.push({
-      test: /\.(js|jsx|ts|tsx)$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['next/babel'],
-        },
-      },
-    });
+    // Remove Babel loader configuration
+    // Ensure other loaders are configured as needed
 
     // Add a fallback for Node.js modules if not running on the server
     if (!isServer) {
