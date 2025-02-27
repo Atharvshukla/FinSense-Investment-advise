@@ -1,115 +1,154 @@
+"use client";
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { BarChart, Calculator, TrendingUp, PieChart, Wallet } from 'lucide-react';
 import { UserNav } from '@/components/user-nav';
+import { motion } from "framer-motion";
+import { FloatingChartCanvas } from '@/components/3d-models/floating-chart';
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 }
+};
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-secondary">
+    <div className="min-h-screen bg-gradient-to-b from-background to-secondary transition-colors duration-500">
       <header className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold">FinSense AI</h1>
+          <motion.h1 
+            className="text-2xl font-bold"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            FinSense AI
+          </motion.h1>
           <UserNav />
         </div>
       </header>
 
       <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <h1 className="text-5xl font-bold mb-6">FinSense AI</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Your intelligent financial advisor powered by AI. Get personalized investment strategies, calculate taxes, track expenses, and access powerful financial tools.
+            Your intelligent financial advisor powered by AI. Get personalized investment strategies, 
+            calculate taxes, track expenses, and access powerful financial tools.
           </p>
+        </motion.div>
+
+        <div className="relative mb-16">
+          <FloatingChartCanvas />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          <Card className="p-6 hover:shadow-lg transition-shadow">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="p-3 bg-primary/10 rounded-lg">
-                <TrendingUp className="w-6 h-6 text-primary" />
-              </div>
-              <h2 className="text-2xl font-semibold">Investment Strategy</h2>
-            </div>
-            <p className="text-muted-foreground mb-6">
-              Get AI-powered investment recommendations based on your risk tolerance and financial goals.
-            </p>
-            <Link href="/investment">
-              <Button className="w-full">Get Started</Button>
-            </Link>
-          </Card>
+        <motion.div 
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+        >
+          {[
+            {
+              icon: <TrendingUp />,
+              title: "Investment Strategy",
+              description: "Get AI-powered investment recommendations based on your risk tolerance and financial goals.",
+              href: "/investment"
+            },
+            {
+              icon: <Calculator />,
+              title: "Tax Calculator",
+              description: "Calculate your taxes under both regimes with AI-powered optimization suggestions.",
+              href: "/taxation"
+            },
+            {
+              icon: <BarChart />,
+              title: "Expense Tracking",
+              description: "Track and analyze your expenses in real-time with AI-powered insights.",
+              href: "/expenses"
+            },
+            {
+              icon: <Wallet />,
+              title: "Financial Tools",
+              description: "Access a comprehensive suite of calculators and tools for smarter financial planning.",
+              href: "/tools"
+            }
+          ].map((feature, index) => (
+            <motion.div key={index} variants={item}>
+              <Link href={feature.href}>
+                <Card className="p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-primary/10 rounded-lg">
+                      {feature.icon}
+                    </div>
+                    <h2 className="text-2xl font-semibold">{feature.title}</h2>
+                  </div>
+                  <p className="text-muted-foreground">
+                    {feature.description}
+                  </p>
+                </Card>
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
 
-          <Card className="p-6 hover:shadow-lg transition-shadow">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="p-3 bg-primary/10 rounded-lg">
-                <Calculator className="w-6 h-6 text-primary" />
-              </div>
-              <h2 className="text-2xl font-semibold">Tax Calculator</h2>
-            </div>
-            <p className="text-muted-foreground mb-6">
-              Calculate your taxes under both regimes with AI-powered optimization suggestions.
-            </p>
-            <Link href="/taxation">
-              <Button className="w-full">Calculate Taxes</Button>
-            </Link>
-          </Card>
-
-          <Card className="p-6 hover:shadow-lg transition-shadow">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="p-3 bg-primary/10 rounded-lg">
-                <BarChart className="w-6 h-6 text-primary" />
-              </div>
-              <h2 className="text-2xl font-semibold">Expense Tracking</h2>
-            </div>
-            <p className="text-muted-foreground mb-6">
-              Track and analyze your expenses in real-time with AI-powered insights.
-            </p>
-            <Link href="/expenses">
-              <Button className="w-full">Track Expenses</Button>
-            </Link>
-          </Card>
-
-          <Card className="p-6 hover:shadow-lg transition-shadow">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="p-3 bg-primary/10 rounded-lg">
-                <Wallet className="w-6 h-6 text-primary" />
-              </div>
-              <h2 className="text-2xl font-semibold">Financial Tools</h2>
-            </div>
-            <p className="text-muted-foreground mb-6">
-              Access a comprehensive suite of calculators and tools for smarter financial planning.
-            </p>
-            <Link href="/tools">
-              <Button className="w-full">Explore Tools</Button>
-            </Link>
-          </Card>
-        </div>
-
-        <div className="mt-16 text-center">
+        <motion.div 
+          className="mt-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+        >
           <h2 className="text-3xl font-bold mb-4">Why Choose FinSense AI?</h2>
           <div className="grid md:grid-cols-3 gap-8 mt-8">
-            <div>
-              <PieChart className="w-12 h-12 mx-auto mb-4 text-primary" />
-              <h3 className="text-xl font-semibold mb-2">Smart Analysis</h3>
-              <p className="text-muted-foreground">
-                Advanced AI algorithms analyze your financial data for optimal recommendations.
-              </p>
-            </div>
-            <div>
-              <TrendingUp className="w-12 h-12 mx-auto mb-4 text-primary" />
-              <h3 className="text-xl font-semibold mb-2">Real-time Updates</h3>
-              <p className="text-muted-foreground">
-                Get instant insights and updates about your financial portfolio.
-              </p>
-            </div>
-            <div>
-              <Calculator className="w-12 h-12 mx-auto mb-4 text-primary" />
-              <h3 className="text-xl font-semibold mb-2">Comprehensive Tools</h3>
-              <p className="text-muted-foreground">
-                Access a wide range of financial calculators and planning tools.
-              </p>
-            </div>
+            {[
+              {
+                icon: <PieChart />,
+                title: "Smart Analysis",
+                description: "Advanced AI algorithms analyze your financial data for optimal recommendations."
+              },
+              {
+                icon: <TrendingUp />,
+                title: "Real-time Updates",
+                description: "Get instant insights and updates about your financial portfolio."
+              },
+              {
+                icon: <Calculator />,
+                title: "Comprehensive Tools",
+                description: "Access a wide range of financial calculators and planning tools."
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 + index * 0.2, duration: 0.5 }}
+                className="flex flex-col items-center"
+              >
+                <div className="mb-4 text-primary">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="text-muted-foreground">{feature.description}</p>
+              </motion.div>
+            ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
