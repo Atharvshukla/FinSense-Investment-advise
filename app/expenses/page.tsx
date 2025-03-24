@@ -22,12 +22,15 @@ export default function ExpensesPage() {
   const { toast } = useToast();
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
+    alert('File dropped!');
     const file = acceptedFiles[0];
     if (!file) return;
-    
+  
     setIsAnalyzing(true);
-    
+  
     try {
+      console.log('Dropped file:', file);
+
       // Here we would process the file and extract expense data
       // For now, using mock data
       const mockData = {
@@ -245,3 +248,5 @@ export default function ExpensesPage() {
     </div>
   );
 }
+
+

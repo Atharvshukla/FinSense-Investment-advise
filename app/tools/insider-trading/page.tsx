@@ -117,7 +117,7 @@ export default function InsiderTradingPage() {
                 <div className="p-4 bg-muted rounded-lg">
                   <h3 className="font-medium mb-2">Transaction Patterns</h3>
                   <p className="text-sm text-muted-foreground">
-                    Large purchases by multiple executives suggest strong confidence in the company's
+                    Large purchases by multiple executives suggest strong confidence in the company&apos;s
                     future performance.
                   </p>
                 </div>

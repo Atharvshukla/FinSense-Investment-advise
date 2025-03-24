@@ -36,7 +36,7 @@ export function TaxSavingSuggestions({ data }: TaxSavingSuggestionsProps) {
               <h4 className="font-semibold mb-2">Section 80C Utilization</h4>
               <Progress value={section80CProgress} className="mb-2" />
               <p className="text-sm text-muted-foreground">
-                You've utilized ₹{data.savings.section80C.toLocaleString()} out of ₹{section80CLimit.toLocaleString()}
+                You&apos;ve utilized ₹{data.savings.section80C.toLocaleString()} out of ₹{section80CLimit.toLocaleString()}
               </p>
               {section80CProgress < 100 && (
                 <p className="text-sm mt-2 text-yellow-600 dark:text-yellow-400">
@@ -56,7 +56,7 @@ export function TaxSavingSuggestions({ data }: TaxSavingSuggestionsProps) {
               <h4 className="font-semibold mb-2">NPS Investment</h4>
               <Progress value={npsProgress} className="mb-2" />
               <p className="text-sm text-muted-foreground">
-                You've invested ₹{data.savings.nps.toLocaleString()} in NPS
+                You&apos;ve invested ₹{data.savings.nps.toLocaleString()} in NPS
               </p>
               {npsProgress < 100 && (
                 <p className="text-sm mt-2 text-green-600 dark:text-green-400">
